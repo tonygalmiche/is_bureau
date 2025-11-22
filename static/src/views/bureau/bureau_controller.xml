@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="is_bureau.BureauController">
+        <Layout className="props.className" display="props.display">
+            <t t-set-slot="layout-buttons">
+                 <button t-if="props.archInfo.create" class="btn btn-primary" t-on-click="createRecord">
+                    Nouveau
+                 </button>
+                 <button t-if="props.archInfo.reorganize" class="btn btn-secondary" t-on-click="reorganize">
+                    <i class="fa fa-th"/> Réorganiser
+                 </button>
+            </t>
+            <t t-set-slot="layout-actions">
+                <SearchBar t-if="props.archInfo.searchView" toggler="searchBarToggler"/>
+            </t>
+            <t t-set-slot="control-panel-navigation-additional">
+                <t t-if="props.archInfo.searchView" t-component="searchBarToggler.component" t-props="searchBarToggler.props"/>
+            </t>
+            <t t-component="props.Renderer" list="model.root" archInfo="props.archInfo"/>
+        </Layout>
+    </t>
+</templates>

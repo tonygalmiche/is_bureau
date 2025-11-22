@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View -->
+        <record id="view_is_bureau_favoris_tree" model="ir.ui.view">
+            <field name="name">is.bureau.favoris.tree</field>
+            <field name="model">is.bureau.favoris</field>
+            <field name="arch" type="xml">
+                <list string="Favoris Bureau">
+                    <field name="name"/>
+                    <field name="position_x"/>
+                    <field name="position_y"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_is_bureau_favoris_form" model="ir.ui.view">
+            <field name="name">is.bureau.favoris.form</field>
+            <field name="model">is.bureau.favoris</field>
+            <field name="arch" type="xml">
+                <form string="Favoris Bureau">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="position_x"/>
+                            <field name="position_y"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Bureau View -->
+        <record id="view_is_bureau_favoris_bureau" model="ir.ui.view">
+            <field name="name">is.bureau.favoris.bureau</field>
+            <field name="model">is.bureau.favoris</field>
+            <field name="arch" type="xml">
+                <bureau image_field="image" color_field="color">
+                    <field name="name"/>
+                    <field name="image"/>
+                    <field name="color"/>
+                    <field name="position_x"/>
+                    <field name="position_y"/>
+                </bureau>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_is_bureau_favoris" model="ir.actions.act_window">
+            <field name="name">Favoris Bureau</field>
+            <field name="res_model">is.bureau.favoris</field>
+            <field name="view_mode">bureau,list,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_is_bureau_root" name="Bureau" sequence="10" groups="base.group_system"/>
+        <menuitem id="menu_is_bureau_favoris" name="Favoris" parent="menu_is_bureau_root" action="action_is_bureau_favoris" sequence="10"/>
+
+    </data>
+</odoo>

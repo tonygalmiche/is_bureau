@@ -1,0 +1,97 @@
+.o_bureau_view {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #f0f0f0;
+    background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+    background-size: 20px 20px;
+
+    .o_bureau_item {
+        position: absolute;
+        width: 100px;
+        height: 130px;
+        cursor: pointer;
+        user-select: none;
+        
+        .o_bureau_item_card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            padding: 10px 5px 5px 5px;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .o_bureau_item_icon {
+                margin-bottom: 5px;
+                color: #714B67;
+            }
+
+            .o_bureau_item_image {
+                width: 64px;
+                height: 64px;
+                object-fit: cover;
+                border-radius: 10px; /* Rounded corners like app icons */
+                margin-bottom: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+            
+            .o_bureau_item_name {
+                font-weight: bold;
+                word-break: break-word;
+                font-size: 12px;
+                color: #333;
+                text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+                background-color: rgba(255,255,255,0.6);
+                padding: 2px 5px;
+                border-radius: 3px;
+            }
+
+            // Colors
+            $o-bureau-colors: (
+                0: #714B67,
+                1: #F06050,
+                2: #F4A460,
+                3: #F7CD1F,
+                4: #6CC1ED,
+                5: #814968,
+                6: #EB7E7F,
+                7: #2C8397,
+                8: #475577,
+                9: #D6145F,
+                10: #30C381,
+                11: #9365B8
+            );
+
+            @each $index, $color in $o-bureau-colors {
+                &.o_color_#{$index} {
+                    .o_bureau_item_icon {
+                        color: $color !important;
+                    }
+                    .o_bureau_item_name {
+                        background: linear-gradient(to bottom, $color, darken($color, 15%)) !important;
+                        color: white !important;
+                        text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    }
+                }
+            }
+        }
+        
+        &.o_dragged {
+            opacity: 0.8;
+            z-index: 1000;
+            .o_bureau_item_card {
+                background-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+        }
+    }
+}

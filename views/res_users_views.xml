@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Bureau View for Res Users -->
+        <record id="view_res_users_bureau" model="ir.ui.view">
+            <field name="name">res.users.bureau</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <bureau image_field="avatar_128" create="false" can_open="0" search_view="false" reorganize="false" bg_color="#e1f5fe">
+                    <field name="name"/>
+                    <field name="position_x"/>
+                    <field name="position_y"/>
+                    <field name="avatar_128"/>
+                </bureau>
+            </field>
+        </record>
+
+        <!-- Action for Users Bureau -->
+        <record id="action_res_users_bureau" model="ir.actions.act_window">
+            <field name="name">Utilisateurs (Bureau)</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">bureau,kanban,list,form</field>
+            <field name="view_id" ref="view_res_users_bureau"/>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_is_bureau_users" name="Utilisateurs" parent="menu_is_bureau_root" action="action_res_users_bureau" sequence="20"/>
+
+    </data>
+</odoo>

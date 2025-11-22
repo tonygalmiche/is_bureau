@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="is_bureau.BureauRenderer">
+        <div class="o_bureau_view" t-ref="root" t-att-style="getBgStyle()">
+            <t t-foreach="props.list.records" t-as="record" t-key="record.id">
+                <div class="o_bureau_item" 
+                     t-att-data-id="record.resId"
+                     t-attf-style="left: {{record.data.position_x}}px; top: {{record.data.position_y}}px;"
+                     t-on-click="() => this.onItemClick(record)">
+                    <div class="o_bureau_item_card" t-att-class="getColorClass(record)">
+                        <t t-if="hasImage(record)">
+                            <img t-att-src="getImageUrl(record)" class="o_bureau_item_image"/>
+                        </t>
+                        <t t-else="">
+                            <div class="o_bureau_item_icon">
+                                <i class="fa fa-file-o fa-3x"/>
+                            </div>
+                        </t>
+                        <div class="o_bureau_item_name">
+                            <t t-esc="record.data.name"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
